@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+$loadPath1 = __DIR__ . '/../../../autoload.php';
+$loadPath2 = __DIR__ . '/../vendor/autoload.php';
+
+if (file_exists($loadPath1)) {
+    include $loadPath1;
+} else {
+    include $loadPath2;
+}
+
+
+use ColdHot\ConsoleApplication;
+
+try {
+    $application = new ConsoleApplication();
+    $application->run($argv);
+} catch (Exception $e) {
+    echo "Критическая ошибка: " . $e->getMessage() . "\n";
+    exit(1);
+}
